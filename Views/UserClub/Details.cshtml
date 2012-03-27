@@ -1,0 +1,26 @@
+﻿@model GB.Models.UserClub
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>UserClub</legend>
+
+    <div class="display-label">Brand</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Brand)
+    </div>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.UserClubID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

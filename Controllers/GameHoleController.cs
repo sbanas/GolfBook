@@ -1,0 +1,114 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using GB.Models;
+using GB.DAL;
+
+namespace GB.Controllers
+{ 
+    public class GameHoleController : Controller
+    {
+        private GBContext db = new GBContext();
+
+        //
+        // GET: /GameHole/
+
+        public ViewResult Index()
+        {
+            var gameholes = db.GameHoles.Include(g => g.CourseHole);
+            return View(gameholes.ToList());
+        }
+
+        //
+        // GET: /GameHole/Details/5
+
+        public ViewResult Details(int id)
+        {
+            GameHole gamehole = db.GameHoles.Find(id);
+            return View(gamehole);
+        }
+
+        //
+        // GET: /GameHole/Create
+
+        public ActionResult Create()
+        {
+            ViewBag.CourseHoleID = new SelectList(db.CourseHoles, "CourseHoleID", "HoleDescription");
+            return View();
+        } 
+
+        //
+        // POST: /GameHole/Create
+
+        [HttpPost]
+        public ActionResult Create(GameHole gamehole)
+        {
+            if (ModelState.IsValid)
+            {
+                db.GameHoles.Add(gamehole);
+                db.SaveChanges();
+                return RedirectToAction("Index");  
+            }
+
+            ViewBag.CourseHoleID = new SelectList(db.CourseHoles, "CourseHoleID", "HoleDescription", gamehole.CourseHoleID);
+            return View(gamehole);
+        }
+        
+        //
+        // GET: /GameHole/Edit/5
+ 
+        public ActionResult Edit(int id)
+        {
+            GameHole gamehole = db.GameHoles.Find(id);
+            ViewBag.CourseHoleID = new SelectList(db.CourseHoles, "CourseHoleID", "HoleDescription", gamehole.CourseHoleID);
+            return View(gamehole);
+        }
+
+        //
+        // POST: /GameHole/Edit/5
+
+        [HttpPost]
+        public ActionResult Edit(GameHole gamehole)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(gamehole).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.CourseHoleID = new SelectList(db.CourseHoles, "CourseHoleID", "HoleDescription", gamehole.CourseHoleID);
+            return View(gamehole);
+        }
+
+        //
+        // GET: /GameHole/Delete/5
+ 
+        public ActionResult Delete(int id)
+        {
+            GameHole gamehole = db.GameHoles.Find(id);
+            return View(gamehole);
+        }
+
+        //
+        // POST: /GameHole/Delete/5
+
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(int id)
+        {            
+            GameHole gamehole = db.GameHoles.Find(id);
+            db.GameHoles.Remove(gamehole);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            db.Dispose();
+            base.Dispose(disposing);
+        }
+    }
+}

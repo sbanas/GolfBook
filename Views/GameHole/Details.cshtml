@@ -1,0 +1,30 @@
+﻿@model GB.Models.GameHole
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>GameHole</legend>
+
+    <div class="display-label">CourseHole</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CourseHole.HoleDescription)
+    </div>
+
+    <div class="display-label">TotalHits</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TotalHits)
+    </div>
+
+    <div class="display-label">Putts</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Putts)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.GameHoleID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

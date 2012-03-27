@@ -1,0 +1,69 @@
+﻿@model IEnumerable<GB.Models.CourseHole>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            GolfClub
+        </th>
+        <th>
+            GolfCourse
+        </th>
+        <th>
+            HoleNumber
+        </th>
+        <th>
+            HolePar
+        </th>
+        <th>
+            HoleLength
+        </th>
+        <th>
+            HoleHCP
+        </th>
+        <th>
+            HoleDescription
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GolfCourse.GolfClub.Name )
+        </td>        
+        <td>
+            @Html.DisplayFor(modelItem => item.GolfCourse.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoleNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HolePar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoleLength)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoleHCP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HoleDescription)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CourseHoleID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CourseHoleID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CourseHoleID })
+        </td>
+    </tr>
+}
+
+</table>

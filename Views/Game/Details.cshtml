@@ -1,0 +1,78 @@
+﻿@model GB.Models.Game
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Game</legend>
+
+    <div class="display-label">GolfCourse</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GolfCourse.Name)
+    </div>
+
+    <div class="display-label">Date</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Date)
+    </div>
+
+
+    <div class="display-label">Rounds</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Rounds)
+    </div>
+
+    <div class="display-label">Description</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.GameID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+<h2>Game Holes</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create","GameHole")
+</p>
+<table>
+    <tr>
+        <th>
+            CourseHole
+        </th>
+        <th>
+            HolePar
+        </th>
+        <th>
+            TotalHits
+        </th>
+        <th>
+            Putts
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.GameHoles ) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseHole.HoleNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CourseHole.HolePar)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalHits)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Putts)
+        </td>
+        <td>
+            @Html.RouteLink("Edit", new { Controller = "GameHole", Action = "Edit", ID = item.GameHoleID })
+        </td>
+    </tr>
+}

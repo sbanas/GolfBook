@@ -1,0 +1,7 @@
+D:\Projects\Private\GolfBook\GolfBook\GolfBook\obj\Debug\ResolveAssemblyReference.cache
+D:\Projects\Private\GolfBook\GolfBook\GolfBook\bin\GB.dll
+D:\Projects\Private\GolfBook\GolfBook\GolfBook\bin\GB.pdb
+D:\Projects\Private\GolfBook\GolfBook\GolfBook\bin\EntityFramework.dll
+D:\Projects\Private\GolfBook\GolfBook\GolfBook\bin\EntityFramework.xml
+D:\Projects\Private\GolfBook\GolfBook\GolfBook\obj\Debug\GB.dll
+D:\Projects\Private\GolfBook\GolfBook\GolfBook\obj\Debug\GB.pdb

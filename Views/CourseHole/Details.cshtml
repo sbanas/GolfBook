@@ -1,0 +1,45 @@
+﻿@model GB.Models.CourseHole
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>CourseHole</legend>
+
+    <div class="display-label">GolfCourse</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.GolfCourse.Name)
+    </div>
+
+    <div class="display-label">HoleNumber</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HoleNumber)
+    </div>
+
+    <div class="display-label">HolePar</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HolePar)
+    </div>
+
+    <div class="display-label">HoleLength</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HoleLength)
+    </div>
+
+    <div class="display-label">HoleHCP</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HoleHCP)
+    </div>
+
+    <div class="display-label">HoleDescription</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.HoleDescription)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.CourseHoleID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
