@@ -11,6 +11,7 @@ namespace GB.DAL
 {
     public class GBContext : DbContext
     {
+        
         public DbSet<GolfClub> GolfClubs { get; set; }
         public DbSet<GolfCourse> GolfCourses { get; set; }
 

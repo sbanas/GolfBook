@@ -18,7 +18,7 @@ namespace GB
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            //filters.Add(new HandleErrorAttribute());
+            filters.Add(new HandleErrorAttribute());
         }
 
         public static void RegisterRoutes(RouteCollection routes)
@@ -35,6 +35,7 @@ namespace GB
 
         protected void Application_Start()
         {
+            
             //Database.SetInitializer<GBContext>(new GBInitializer());
 
             AreaRegistration.RegisterAllAreas();
