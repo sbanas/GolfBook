@@ -12,7 +12,7 @@ namespace GB.Models
 
         public int GolfCourseID { get; set; }
 
-        [DisplayFormat(DataFormatString="{0:yyyy/MM/dd HH:mm}")]
+        //[DisplayFormat(DataFormatString="{0:yyyy/MM/dd HH:mm}")]
         public DateTime Date { get; set; }
 
         
