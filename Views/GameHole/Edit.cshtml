@@ -13,8 +13,9 @@
     @Html.ValidationSummary(true)
     <fieldset>
         <legend>GameHole</legend>
-
+        @Html.HiddenFor(model => model.GameID)
         @Html.HiddenFor(model => model.GameHoleID)
+        @Html.HiddenFor(model => model.CourseHoleID)
 
         <div class="editor-label">
             @Html.LabelFor(model => model.CourseHole.HoleNumber)

@@ -1,4 +1,5 @@
 ﻿@model GB.Models.Game
+           
 @{
     ViewBag.Title = "Edit";
 }
@@ -13,9 +14,10 @@
         <legend>Game</legend>
         @Html.HiddenFor(model => model.GameID)
         @Html.HiddenFor(model => model.Marker)
+        @Html.HiddenFor(model => model.GolfCourseID)
         <div class="editor-label">
             @Html.LabelFor(model => model.GolfCourseID, "GolfCourse")
-            @Model.GolfCourse.Name 
+            @Model.GolfCourse.Name
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.Date)

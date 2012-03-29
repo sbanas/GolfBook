@@ -15,6 +15,7 @@ namespace GB.Models
 
 
 
+
         public virtual UserClub UserClub { get; set; }
         public virtual GameHole GameHole { get; set; }
     }

@@ -11,7 +11,7 @@ namespace GB.DAL
 {
     //DropCreateDatabaseIfModelChanges<GBContext>
 
-    public class GBInitializer : DropCreateDatabaseAlways   <GBContext>
+    public class GBInitializer : DropCreateDatabaseIfModelChanges <GBContext>
     {
         protected override void Seed(GBContext context)
         {

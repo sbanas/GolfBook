@@ -42,7 +42,7 @@ namespace GB
         protected void Application_Start()
         {
 
-            //Database.SetInitializer<GBContext>(new GBInitializer());
+            Database.SetInitializer<GBContext>(new GBInitializer());
 
             AreaRegistration.RegisterAllAreas();
 

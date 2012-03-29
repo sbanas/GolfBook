@@ -14,6 +14,15 @@ namespace GB.Controllers
     {
         private GBContext db = new GBContext();
 
+        public PartialViewResult Search(string q)
+        {
+            var golfClubs = db.GolfClubs
+                .Where(r => r.Name.Contains(q) ||
+                    String.IsNullOrEmpty(q));
+            return PartialView("_GolfClubSearchResults", golfClubs);
+        }
+
+
         //
         // GET: /GolfClub/
 

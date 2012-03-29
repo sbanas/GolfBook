@@ -49,7 +49,7 @@ namespace GB.Controllers
 
         public ActionResult Create()
         {
-            ViewBag.GolfClubID = new SelectList(db.GolfClubs, "GolfClubID", "Name");
+            ViewBag.GolfClubID = new SelectList(db.GolfClubs.Where(g => g.GolfCourses.Count > 0), "GolfClubID", "Name");
 
             ViewBag.GolfCourseID = new SelectList(db.GolfCourses, "GolfCourseID", "Name");
             return View();
@@ -103,10 +103,8 @@ namespace GB.Controllers
             {
                 db.Entry(game).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            ViewBag.GolfCourseID = new SelectList(db.GolfCourses, "GolfCourseID", "Name", game.GolfCourseID);
-            return View(game);
+            return RedirectToAction("Index");
         }
 
         //

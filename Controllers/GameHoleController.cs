@@ -19,7 +19,7 @@ namespace GB.Controllers
 
         public ViewResult Index()
         {
-            var gameholes = db.GameHoles.Include(g => g.CourseHole);
+            var gameholes = db.GameHoles.Include(g => g.Game).Include(c => c.CourseHole).Include(c => c.Game);
             return View(gameholes.ToList());
         }
 
@@ -67,9 +67,21 @@ namespace GB.Controllers
             ViewBag.CourseHoleID = new SelectList(db.CourseHoles, "CourseHoleID", "HoleDescription", gamehole.CourseHoleID);
             return View(gamehole);
         }
-
         //
         // POST: /GameHole/Edit/5
+
+        [HttpPost]
+        public ActionResult Edit_(GameHole gamehole)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(gamehole).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Details", "Game", new { id = gamehole.GameID });
+            }
+            ViewBag.CourseHoleID = new SelectList(db.CourseHoles, "CourseHoleID", "HoleDescription", gamehole.CourseHoleID);
+            return View(gamehole);
+        }
 
         [HttpPost]
         public ActionResult Edit(GameHole gamehole)
@@ -78,7 +90,8 @@ namespace GB.Controllers
             {
                 db.Entry(gamehole).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                var _id =  db.GameHoles.Where(h => h.GameID == gamehole.GameID).Select(h => (h.GameHoleID > gamehole.GameHoleID)).Min();
+                return RedirectToAction("Edit", "GameHole", new { id = _id });
             }
             ViewBag.CourseHoleID = new SelectList(db.CourseHoles, "CourseHoleID", "HoleDescription", gamehole.CourseHoleID);
             return View(gamehole);

@@ -18,6 +18,13 @@ namespace GB.DAL
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+           // modelBuilder.Entity<GameHole>().HasRequired(o => o.CourseHole).WithRequiredDependent( o => o.GameHoles );
+            modelBuilder.Entity<GameHole>()
+                .HasRequired(a => a.CourseHole)
+                .WithMany()
+                .HasForeignKey(u => u.CourseHoleID)
+                .WillCascadeOnDelete(false);
+
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
 
         }
