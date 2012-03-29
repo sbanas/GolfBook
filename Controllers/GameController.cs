@@ -65,13 +65,17 @@ namespace GB.Controllers
             if (ModelState.IsValid)
             {
                 game.Marker = User.Identity.Name;
-                db.Games.Add(game);
+                game = db.Games.Add(game);
                 game.GameHoles = new List<GameHole>();
-                foreach (var hole in db.GolfCourses.Find(game.GolfCourseID).CourseHoles)
+                for (int r = 1; r <= game.Rounds; r++)
                 {
-                    game.GameHoles.Add(new GameHole { CourseHoleID = hole.CourseHoleID });
+                    foreach (var hole in db.GolfCourses.Find(game.GolfCourseID).CourseHoles)
+                    {
+                        game.GameHoles.Add(new GameHole { CourseHoleID = hole.CourseHoleID  });
+                    }
                 }
                 db.SaveChanges();
+                ViewBag.GolfCourseID = new SelectList(db.GolfCourses, "GolfCourseID", "Name", game.GolfCourseID);
 
                 return RedirectToAction("Index");
             }

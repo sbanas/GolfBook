@@ -7,14 +7,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace GB.Models
 {
-    [CompareTo(CompareToOperation.GreaterThan, "TotalHits", "Putts",ErrorMessage="Total Hits must be greater than number of putts!")]
+    //[CompareTo(CompareToOperation.GreaterThan, "TotalHits", "Putts",ErrorMessage="Total Hits must be greater than number of putts!")]
     public class GameHole
     {
         public int GameHoleID { get; set; }
         public int CourseHoleID { get; set; }
         public int GameID { get; set; }
 
-        [Range(1, 30)]
+        [Range(0, 30)]
         public int TotalHits { get; set; }
 
         [Range(0, 20)]

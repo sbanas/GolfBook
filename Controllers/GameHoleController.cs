@@ -90,8 +90,7 @@ namespace GB.Controllers
             {
                 db.Entry(gamehole).State = EntityState.Modified;
                 db.SaveChanges();
-                var _id =  db.GameHoles.Where(h => h.GameID == gamehole.GameID).Select(h => (h.GameHoleID > gamehole.GameHoleID)).Min();
-                return RedirectToAction("Edit", "GameHole", new { id = _id });
+                return RedirectToAction("Details", "Game", new { id = gamehole.GameID});
             }
             ViewBag.CourseHoleID = new SelectList(db.CourseHoles, "CourseHoleID", "HoleDescription", gamehole.CourseHoleID);
             return View(gamehole);
