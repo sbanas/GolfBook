@@ -80,7 +80,7 @@
             //alert(document.getElementById("#target").textContent);
             //var f = document.get
             $.get('@Url.Action("GolfCoursePartial")', { GolfClubID: golfClubSelected }, function (data) {
-                alert(golfClubSelected);
+                //alert(golfClubSelected);
                 $("#target").html(data);
             });
 
