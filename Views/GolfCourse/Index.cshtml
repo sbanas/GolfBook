@@ -1,51 +1,34 @@
 ﻿@model IEnumerable<GB.Models.GolfCourse>
-
 @{
     ViewBag.Title = "Index";
 }
-
-<h2>Index</h2>
-
+<h2>
+    Index</h2>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table>
-    <tr>
-        <th>
-            GolfClub
-        </th>
-        <th>
-            Name
-        </th>
-        <th>
-            Description
-        </th>
-        <th>
-            Par
-        </th>
-        <th></th>
-    </tr>
+<fieldset>
+    <div>
+        @Html.DropDownList("GolfClubs", "Select Gofl Club")
+    </div>
+    <br />
+    <div id="target">
+    </div>
+    <div id="log">
+    </div>
+</fieldset>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#GolfClubs").change(function () {
+            //            $("#log").ajaxError(function (event, jqxhr, settings, exception) {
+            //                alert(exception);
+            //            });
+            var e = document.getElementById("GolfClubs");
+            var golfClubSelected = e.options[e.selectedIndex].value;
+            $.get('@Url.Action("GolfCoursesPartial")', { GolfClubID: golfClubSelected }, function (data) {
+                $("#target").html(data);
+            });
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.GolfClub.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Par)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.GolfCourseID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.GolfCourseID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.GolfCourseID })
-        </td>
-    </tr>
-}
-
-</table>
+        });
+    });
+</script>

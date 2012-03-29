@@ -1,27 +1,43 @@
 ﻿@model GB.Models.Game
-
 @{
     ViewBag.Title = "Create";
 }
-
-<h2>Create</h2>
-
+<h2>
+    Create</h2>
 <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+@*<script type="text/javascript">
+    $(function () {
+        $('#GolfClubID').change(function () {
+            $("#log").ajaxError(function (event, jqxhr, settings, exception) {
+                alert(exception);
+            });
 
-@using (Html.BeginForm()) {
+            $.get('@Url.Action("GolfCoursePartial")', { GolfClubID: GolfClubID }, function (data) {
+            alert(GolfClubID);
+            $("#target").html(data);
+        });
+    });
+</script>*@
+@using (Html.BeginForm())
+{
     @Html.ValidationSummary(true)
     <fieldset>
-        <legend>Game</legend>
-
+        <legend>Club and course</legend>
         <div class="editor-label">
-            @Html.LabelFor(model => model.GolfCourseID, "GolfCourse")
+            @Html.Label("Golf Club")
         </div>
         <div class="editor-field">
-            @Html.DropDownList("GolfCourseID", String.Empty)
-            @Html.ValidationMessageFor(model => model.GolfCourseID)
+            @Html.DropDownList("GolfClubID", String.Empty)
         </div>
-
+        @Html.ValidationSummary(true)
+        <div id="target">
+        </div>
+        <div id="log">
+        </div>
+    </fieldset>
+    <fieldset>
+        <legend>Game</legend>
         <div class="editor-label">
             @Html.LabelFor(model => model.Date)
         </div>
@@ -29,8 +45,6 @@
             @Html.EditorFor(model => model.Date)
             @Html.ValidationMessageFor(model => model.Date)
         </div>
-
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Rounds)
         </div>
@@ -38,7 +52,6 @@
             @Html.EditorFor(model => model.Rounds)
             @Html.ValidationMessageFor(model => model.Rounds)
         </div>
-
         <div class="editor-label">
             @Html.LabelFor(model => model.Description)
         </div>
@@ -46,13 +59,31 @@
             @Html.EditorFor(model => model.Description)
             @Html.ValidationMessageFor(model => model.Description)
         </div>
-
         <p>
             <input type="submit" value="Create" />
         </p>
     </fieldset>
 }
-
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#GolfClubID").change(function () {
+            $("#log").ajaxError(function (event, jqxhr, settings, exception) {
+                alert(exception);
+            });
+
+            var e = document.getElementById("GolfClubID");
+            var golfClubSelected = e.options[e.selectedIndex].value;
+            //alert(golfClubSelected);
+            //alert(document.getElementById("#target").textContent);
+            //var f = document.get
+            $.get('@Url.Action("GolfCoursePartial")', { GolfClubID: golfClubSelected }, function (data) {
+                alert(golfClubSelected);
+                $("#target").html(data);
+            });
+
+        });
+    });
+</script>

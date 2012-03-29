@@ -9,7 +9,7 @@ using GB.Models;
 using GB.DAL;
 
 namespace GB.Controllers
-{ 
+{
     public class GolfCourseController : Controller
     {
         private GBContext db = new GBContext();
@@ -20,8 +20,18 @@ namespace GB.Controllers
         public ViewResult Index()
         {
             var golfcourses = db.GolfCourses.Include(g => g.GolfClub);
-            return View(golfcourses.ToList());
+            var golfClubs = new SelectList(db.GolfClubs,"GolfClubID","Name");
+            ViewBag.GolfClubs = golfClubs;
+            return View(golfcourses );
         }
+
+        public PartialViewResult GolfCoursesPartial(int GolfClubID)
+        {
+            return PartialView(db.GolfCourses.Where(c => c.GolfClubID == GolfClubID )
+                .OrderBy(c => c.Name).ToList());
+
+        }
+
 
         //
         // GET: /GolfCourse/Details/5
@@ -39,7 +49,7 @@ namespace GB.Controllers
         {
             ViewBag.GolfClubID = new SelectList(db.GolfClubs, "GolfClubID", "Name");
             return View();
-        } 
+        }
 
         //
         // POST: /GolfCourse/Create
@@ -51,16 +61,16 @@ namespace GB.Controllers
             {
                 db.GolfCourses.Add(golfcourse);
                 db.SaveChanges();
-                return RedirectToAction("Index");  
+                return RedirectToAction("Index");
             }
 
             ViewBag.GolfClubID = new SelectList(db.GolfClubs, "GolfClubID", "Name", golfcourse.GolfClubID);
             return View(golfcourse);
         }
-        
+
         //
         // GET: /GolfCourse/Edit/5
- 
+
         public ActionResult Edit(int id)
         {
             GolfCourse golfcourse = db.GolfCourses.Find(id);
@@ -86,7 +96,7 @@ namespace GB.Controllers
 
         //
         // GET: /GolfCourse/Delete/5
- 
+
         public ActionResult Delete(int id)
         {
             GolfCourse golfcourse = db.GolfCourses.Find(id);
@@ -98,7 +108,7 @@ namespace GB.Controllers
 
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(int id)
-        {            
+        {
             GolfCourse golfcourse = db.GolfCourses.Find(id);
             db.GolfCourses.Remove(golfcourse);
             db.SaveChanges();

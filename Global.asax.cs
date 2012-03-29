@@ -25,6 +25,12 @@ namespace GB
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //routes.MapRoute(
+            //    "Game", 
+            //    "Game/GolfCoursePartial", 
+            //    new { Controller = "Game", Action = "Create" }
+            //    );
+
             routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
@@ -35,7 +41,7 @@ namespace GB
 
         protected void Application_Start()
         {
-            
+
             //Database.SetInitializer<GBContext>(new GBInitializer());
 
             AreaRegistration.RegisterAllAreas();

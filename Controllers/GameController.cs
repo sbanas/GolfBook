@@ -24,7 +24,17 @@ namespace GB.Controllers
                 .Include(g => g.GolfCourse);
             return View(games.ToList());
         }
+        public PartialViewResult GolfCoursePartial(int GolfClubID)
+        {
+            ViewBag.GolfCourseID =
+                new SelectList(db.GolfCourses
+                    .Where(c => c.GolfClubID == GolfClubID)
+                    .ToList()
+                    , "GolfCourseID", "Name");
 
+            return PartialView("GolfCoursePartial", ViewBag.GolfCourseID);
+
+        }
         //
         // GET: /Game/Details/5
 
@@ -39,6 +49,8 @@ namespace GB.Controllers
 
         public ActionResult Create()
         {
+            ViewBag.GolfClubID = new SelectList(db.GolfClubs, "GolfClubID", "Name");
+
             ViewBag.GolfCourseID = new SelectList(db.GolfCourses, "GolfCourseID", "Name");
             return View();
         }
@@ -49,6 +61,7 @@ namespace GB.Controllers
         [HttpPost]
         public ActionResult Create(Game game)
         {
+
             if (ModelState.IsValid)
             {
                 game.Marker = User.Identity.Name;
@@ -64,7 +77,10 @@ namespace GB.Controllers
             }
 
             ViewBag.GolfCourseID = new SelectList(db.GolfCourses, "GolfCourseID", "Name", game.GolfCourseID);
+
             return View(game);
+
+
         }
 
         //

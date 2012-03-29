@@ -4,10 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GB.Models;
+using MvcSiteMapProvider;
 namespace GB.Controllers
 {
     public class HomeController : Controller
     {
+        [Authorize]
         public ActionResult Index()
         {
             if (User.Identity.IsAuthenticated)

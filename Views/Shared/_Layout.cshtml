@@ -3,29 +3,57 @@
 <head>
     <meta charset="utf-8" />
     <title>@ViewBag.Title</title>
-    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/Site.css")" rel="Stylesheet" type="text/css" media="screen"/>
+    <link href="@Url.Content("~/Content/Menu.css")" rel="Stylesheet" type="text/css" media="screen" />
     <script src="@Url.Content("~/Scripts/jquery-1.5.1.min.js")" type="text/javascript"></script>
     <script src="@Url.Content("~/Scripts/modernizr-1.7.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.easing.1.3.js")" type="text/javascript"></script>
 </head>
 <body>
     <div class="page">
         <header>
             <div id="title">
-                <h1>GolfBook</h1>
+                <h1>
+                    GolfBook</h1>
             </div>
             <div id="logindisplay">
                 @Html.Partial("_LogOnPartial")
             </div>
             <nav>
-                <ul id="menu">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Golf Clubs", "Index", "GolfClub")</li>
-                    <li>@Html.ActionLink("Golf Courses", "Index", "GolfCourse")</li>
-                    <li>@Html.ActionLink("Course Holes", "Index", "CourseHole")</li>
-                    <li>@Html.ActionLink("My Clubs", "Index", "UserClub")</li>
-                    <li>@Html.ActionLink("My Games", "Index", "Game")</li>
+                <ul id="sdt_menu" class="sdt_menu">
+                    <li><a href="/">
+                        <img src="../images/home.jpg" alt="" />
+                        <span class="sdt_active"></span><span class="sdt_wrap"><span class="sdt_link">Home</span>
+                            <span class="sdt_descr">Go to home page</span> </span></a></li>
+                    @if (User.IsInRole("Administrators"))
+                    {
+                        <li><a href="/GolfClub">
+                            <img src="../images/golfcourse.jpg" alt="" />
+                            <span class="sdt_active"></span><span class="sdt_wrap"><span class="sdt_link">Golf Clubs</span>
+                                <span class="sdt_descr">List of all golf clubs</span> </span></a>
+                            <div class="sdt_box">
+                                <a href="/GolfClub">Clubs</a> <a href="/GolfCourse">Courses</a> <a href="/CourseHole">
+                                    Course Holes</a>
+                            </div>
+                        </li>
 
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    }
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li><a href="/Game">
+                            <img src="../images/mygame.jpg" alt="" />
+                            <span class="sdt_active"></span><span class="sdt_wrap"><span class="sdt_link">My Games</span>
+                                <span class="sdt_descr">History, stats etc</span> </span></a>
+                            <div class="sdt_box">
+                                <a href="/Game">My Games</a> <a href="#">My Friends Games</a>
+                            </div>
+                        </li>
+                    }
+                    <li><a href="/Home/About">
+                        <img src="../images/about.jpg" alt="" />
+                        <span class="sdt_active"></span><span class="sdt_wrap"><span class="sdt_link">About</span>
+                            <span class="sdt_descr">About us</span> </span></a></li>
                 </ul>
             </nav>
         </header>
@@ -35,5 +63,66 @@
         <footer>
         </footer>
     </div>
+    <script type="text/javascript">
+        $(function () {
+            /**
+            * for each menu element, on mouseenter, 
+            * we enlarge the image, and show both sdt_active span and 
+            * sdt_wrap span. If the element has a sub menu (sdt_box),
+            * then we slide it - if the element is the last one in the menu
+            * we slide it to the left, otherwise to the right
+            */
+            $('#sdt_menu > li').bind('mouseenter', function () {
+                var $elem = $(this);
+                $elem.find('img')
+						 .stop(true)
+						 .animate({
+						     'width': '170px',
+						     'height': '170px',
+						     'left': '0px'
+						 }, 400, 'easeOutBack')
+						 .andSelf()
+						 .find('.sdt_wrap')
+					     .stop(true)
+						 .animate({ 'top': '140px' }, 500, 'easeOutBack')
+						 .andSelf()
+						 .find('.sdt_active')
+					     .stop(true)
+						 .animate({ 'height': '170px' }, 300, function () {
+						     var $sub_menu = $elem.find('.sdt_box');
+						     if ($sub_menu.length) {
+						         var left = '170px';
+						         if ($elem.parent().children().length == $elem.index() + 1)
+						             left = '-170px';
+						         $sub_menu.show().animate({ 'left': left }, 200);
+						     }
+						 });
+            }).bind('mouseleave', function () {
+                var $elem = $(this);
+                var $sub_menu = $elem.find('.sdt_box');
+                if ($sub_menu.length)
+                    $sub_menu.hide().css('left', '0px');
+
+                $elem.find('.sdt_active')
+						 .stop(true)
+						 .animate({ 'height': '0px' }, 300)
+						 .andSelf().find('img')
+						 .stop(true)
+						 .animate({
+						     'width': '0px',
+						     'height': '0px',
+						     'left': '85px'
+						 }, 400)
+						 .andSelf()
+						 .find('.sdt_wrap')
+						 .stop(true)
+						 .animate({ 'top': '25px' }, 500);
+            });
+        });
+
+        $(function () {
+            $("input[type=any]").first().focus();
+        });
+    </script>
 </body>
 </html>

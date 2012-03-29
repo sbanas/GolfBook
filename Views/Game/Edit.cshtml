@@ -15,10 +15,7 @@
         @Html.HiddenFor(model => model.Marker)
         <div class="editor-label">
             @Html.LabelFor(model => model.GolfCourseID, "GolfCourse")
-        </div>
-        <div class="editor-field">
-            @Html.DropDownList("GolfCourseID", String.Empty)
-            @Html.ValidationMessageFor(model => model.GolfCourseID)
+            @Model.GolfCourse.Name 
         </div>
         <div class="editor-label">
             @Html.LabelFor(model => model.Date)

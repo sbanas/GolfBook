@@ -11,7 +11,7 @@ namespace GB.DAL
 {
     //DropCreateDatabaseIfModelChanges<GBContext>
 
-    public class GBInitializer : DropCreateDatabaseIfModelChanges  <GBContext>
+    public class GBInitializer : DropCreateDatabaseAlways   <GBContext>
     {
         protected override void Seed(GBContext context)
         {
@@ -126,24 +126,24 @@ namespace GB.DAL
                     Par=72, 
                     CourseHoles = new List<CourseHole>
                     {
-                        new CourseHole { HoleNumber = 1, HolePar = 4,HoleLength = 314 ,HoleHCP = 14 },
-                        new CourseHole { HoleNumber = 2, HolePar = 4,HoleLength = 357 ,HoleHCP = 8 },
-                        new CourseHole { HoleNumber = 3, HolePar = 3,HoleLength = 174 ,HoleHCP = 12 },
-                        new CourseHole { HoleNumber = 4, HolePar = 5,HoleLength = 454 ,HoleHCP = 10 },
-                        new CourseHole { HoleNumber = 5, HolePar = 4,HoleLength = 391 ,HoleHCP = 2 },
-                        new CourseHole { HoleNumber = 6, HolePar = 4,HoleLength = 330 ,HoleHCP = 16 },
-                        new CourseHole { HoleNumber = 7, HolePar = 5,HoleLength = 523 ,HoleHCP = 4 },
-                        new CourseHole { HoleNumber = 8, HolePar = 3,HoleLength = 164 ,HoleHCP = 17 },
-                        new CourseHole { HoleNumber = 9, HolePar = 5,HoleLength = 475 ,HoleHCP = 6 },
-                        new CourseHole { HoleNumber = 10, HolePar = 4,HoleLength = 416 ,HoleHCP = 1 },
-                        new CourseHole { HoleNumber = 11, HolePar = 3,HoleLength = 122 ,HoleHCP = 18 },
-                        new CourseHole { HoleNumber = 12, HolePar = 4,HoleLength = 358 ,HoleHCP = 15 },
-                        new CourseHole { HoleNumber = 13, HolePar = 4,HoleLength = 390 ,HoleHCP = 9 },
-                        new CourseHole { HoleNumber = 14, HolePar = 4,HoleLength = 423 ,HoleHCP = 7 },
-                        new CourseHole { HoleNumber = 15, HolePar = 4,HoleLength = 394 ,HoleHCP = 3 },
-                        new CourseHole { HoleNumber = 16, HolePar = 3,HoleLength = 186 ,HoleHCP = 11 },
-                        new CourseHole { HoleNumber = 17, HolePar = 4,HoleLength = 366 ,HoleHCP = 13 },
-                        new CourseHole { HoleNumber = 18, HolePar = 5,HoleLength = 495 ,HoleHCP = 5 }
+                        new CourseHole { HoleNumber = 1, HolePar = 4,HoleLength = 321 ,HoleHCP = 9 },
+                        new CourseHole { HoleNumber = 2, HolePar = 4,HoleLength = 326 ,HoleHCP = 3 },
+                        new CourseHole { HoleNumber = 3, HolePar = 4,HoleLength = 322 ,HoleHCP = 11 },
+                        new CourseHole { HoleNumber = 4, HolePar = 3,HoleLength = 127 ,HoleHCP = 7 },
+                        new CourseHole { HoleNumber = 5, HolePar = 5,HoleLength = 436 ,HoleHCP = 15 },
+                        new CourseHole { HoleNumber = 6, HolePar = 5,HoleLength = 474 ,HoleHCP = 13 },
+                        new CourseHole { HoleNumber = 7, HolePar = 4,HoleLength = 371 ,HoleHCP = 1 },
+                        new CourseHole { HoleNumber = 8, HolePar = 4,HoleLength = 326 ,HoleHCP = 5 },
+                        new CourseHole { HoleNumber = 9, HolePar = 3,HoleLength = 137 ,HoleHCP = 17 },
+                        new CourseHole { HoleNumber = 10, HolePar = 5,HoleLength = 427 ,HoleHCP = 18 },
+                        new CourseHole { HoleNumber = 11, HolePar = 4,HoleLength = 350 ,HoleHCP = 4 },
+                        new CourseHole { HoleNumber = 12, HolePar = 3,HoleLength = 149 ,HoleHCP = 10 },
+                        new CourseHole { HoleNumber = 13, HolePar = 4,HoleLength = 319 ,HoleHCP = 12 },
+                        new CourseHole { HoleNumber = 14, HolePar = 4,HoleLength = 325 ,HoleHCP = 14 },
+                        new CourseHole { HoleNumber = 15, HolePar = 4,HoleLength = 290 ,HoleHCP = 8 },
+                        new CourseHole { HoleNumber = 16, HolePar = 3,HoleLength = 155 ,HoleHCP = 2 },
+                        new CourseHole { HoleNumber = 17, HolePar = 5,HoleLength = 459 ,HoleHCP = 16 },
+                        new CourseHole { HoleNumber = 18, HolePar = 4,HoleLength = 309 ,HoleHCP = 6 }
                     }
                 }
             };
@@ -174,18 +174,7 @@ namespace GB.DAL
                 new UserClub {UserName="sbanas",Brand="Wilson DI9",Name="5 Iron"},
                 new UserClub {UserName="sbanas",Brand="Wilson",Name="FY Hybrid"},
                 new UserClub {UserName="sbanas",Brand="Wilson",Name="3 Wood"},
-                new UserClub {UserName="sbanas",Brand="Ben Sayers",Name="Putter"},
-                new UserClub {UserName="test",Brand="Taylor Made",Name="Sand Wedge"},
-                new UserClub {UserName="test",Brand="Taylor Made",Name="Pitch Wedge"},
-                new UserClub {UserName="test",Brand="Taylor Made",Name="9 Iron"},
-                new UserClub {UserName="test",Brand="Taylor Made",Name="8 Iron"},
-                new UserClub {UserName="test",Brand="Taylor Made",Name="7 Iron"},
-                new UserClub {UserName="test",Brand="Taylor Made",Name="6 Iron"},
-                new UserClub {UserName="test",Brand="Taylor Made",Name="5 Iron"},
-                new UserClub {UserName="test",Brand="Taylor Made",Name="Hybrid"},
-                new UserClub {UserName="test",Brand="Taylor Made",Name="3 Wood"},
-                new UserClub {UserName="test",Brand="Taylor Made",Name="Driver"},
-                new UserClub {UserName="test",Brand="Taylor Made",Name="Putter"}
+                new UserClub {UserName="sbanas",Brand="Ben Sayers",Name="Putter"}
             };
 
             userClubs.ForEach(s => context.UserClubs.Add(s));

@@ -12,7 +12,6 @@ namespace GB.Models
         public string Name { get; set; }
         public string Description { get; set; }
         public byte Par { get; set; }
-
         public virtual GolfClub GolfClub { get; set; }
         public virtual ICollection<CourseHole> CourseHoles { get; set; }
     }
