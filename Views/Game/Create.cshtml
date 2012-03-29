@@ -14,7 +14,7 @@
             });
 
             $.get('@Url.Action("GolfCoursePartial")', { GolfClubID: GolfClubID }, function (data) {
-            alert(GolfClubID);
+            //alert(GolfClubID);
             $("#target").html(data);
         });
     });
